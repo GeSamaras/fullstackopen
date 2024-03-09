@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+// all components take props from App and send the data
+// Header takes care of rendering the name of the course
+const Header = (props) => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>{props.course.title}</h1>
+    </div>
   )
 }
 
+// Content renders the parts and their number of exercises
+const Content = (props) => {
+  return (
+    <div>
+      <Part parts={props.parts[0]} />
+      <Part parts={props.parts[1]} />
+      <Part parts={props.parts[2]} />
+    </div>
+  )
+}
+
+// Total renders the total number of exercises
+const Total = (props) => {
+  return (
+    <div>
+      <p>Number of exercises {
+        props.parts[0].exercises + 
+        props.parts[1].exercises + 
+        props.parts[2].exercises
+      }
+      </p>
+    </div>
+  )
+}
+const Part = (props) => {
+  return (
+    <div>
+      <p>{props.parts.name} {props.parts.exercises}</p>
+    </div>
+  )
+}
+
+const App = () => {
+  const course = {
+    title: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
+  
+  return (
+    <div>
+      <Header course={course} />
+      <Content parts={course.parts}/>
+      <Total parts={course.parts}/>
+    </div>
+  )
+}
 export default App

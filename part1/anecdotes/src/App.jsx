@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
-// calls the title
-const Title = (props) => {
+const Button = (props) => {
   return (
-    <div>
-      <h1>{props.text}</h1>
-    </div>
+  <div>
+    <button onClick={props.handleClick}>{props.text}</button>
+  </div>
   )
 }
 
@@ -18,15 +17,16 @@ const Lines = (props) => {
     </div>
   )
 }
-
-
-const Button = (props) => {
+// calls the title
+const Title = (props) => {
   return (
-  <div>
-    <button onClick={props.handleClick}>{props.text}</button>
-  </div>
+    <div>
+      <h1>{props.text}</h1>
+    </div>
   )
 }
+
+
 
 // shows the line with most votes in total
 const MostVotedLine = (props) => {
@@ -52,7 +52,7 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
    
-
+  // variable that sets the state of each displayed line
   const [selected, setSelected] = useState(0)
 
 
@@ -96,7 +96,6 @@ const App = () => {
 }
 
 export default App;
-
 
 
 

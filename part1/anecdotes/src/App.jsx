@@ -70,13 +70,14 @@ const App = () => {
   // spread operator to call an array with all the values
   // sums 1 to the line displayed
   const voteClick = () => {
+    console.log(voteClick);
     const newVotes = [...allVotes]
     newVotes[selected] += 1
     setVoted(newVotes)
   }
 
   
-  // takes the ...votes array and picks the one with highest number
+  // takes the ...allvotes array and picks the one with highest number
   const max = Math.max(...allVotes)
 
 
